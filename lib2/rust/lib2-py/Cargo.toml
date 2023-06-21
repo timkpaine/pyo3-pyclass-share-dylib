@@ -1,0 +1,31 @@
+[package]
+name = "lib2_py"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "lib2_py"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+# NOTE: use reexported crate 
+# pyo3 = { version = "0.19", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+
+lib2 = { version = "*", path = "../lib2" }
+lib1.workspace = true
+lib1_py.workspace = true
+strum.workspace = true
+strum_macros.workspace = true
+
+[profile.release]
+debug = true
+lto = false
+panic = 'abort'
+rpath = true
+
+[profile.dev]
+debug = true
+lto = false
+rpath = true

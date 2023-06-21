@@ -1,0 +1,27 @@
+[package]
+name = "lib1_py"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "lib1_py"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+pyo3 = { version = "0.19", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+lib1 = { version = "*", path = "../lib1" }
+strum.workspace = true
+strum_macros.workspace = true
+
+[profile.release]
+debug = true
+lto = false
+panic = 'abort'
+rpath = true
+
+[profile.dev]
+debug = true
+lto = false
+rpath = true

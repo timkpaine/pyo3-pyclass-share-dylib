@@ -1,0 +1,29 @@
+[package]
+name = "lib2_py_binding"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "lib2"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+lib2 = { path = "./rust/lib2", version = "*" }
+lib2_py = { path = "./rust/lib2-py", version = "*" }
+lib1 = { path = "../lib1/rust/lib1", version = "*" }
+lib1_py = { path = "../lib1/rust/lib1-py", version = "*" }
+numpy = "0.19.0"
+strum = "0.24.1"
+
+[profile.release]
+debug = true
+lto = false
+panic = 'abort'
+rpath = true
+
+[profile.dev]
+debug = true
+lto = false
+rpath = true

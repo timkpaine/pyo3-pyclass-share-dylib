@@ -1,0 +1,24 @@
+[package]
+name = "pyo3_dylib"
+version = "0.2.3"
+edition = "2021"
+publish = false
+
+[lib]
+name = "pyo3_dylib"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+pyo3 = { version = "0.19", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+
+[profile.release]
+debug = true
+lto = false
+panic = 'abort'
+rpath = true
+
+[profile.dev]
+debug = true
+lto = false
+rpath = true
