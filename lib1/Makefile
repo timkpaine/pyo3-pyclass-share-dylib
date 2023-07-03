@@ -9,11 +9,13 @@ print-%:
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
-	_CP_COMMAND_LIB := cp target/debug/liblib1.dylib lib1/lib1.abi3.so
-	_CP_COMMAND_DEP := cp target/debug/liblib1_py.dylib lib1/liblib1_py.dylib
+	_CP_COMMAND_LIB := cp target/debug/liblib1_py_binding.dylib lib1/lib1_py_binding.abi3.so
+	_CP_COMMAND_DEP := cp target/debug/*.dylib lib1/
+	_CP_COMMAND_STD := cp $(shell rustc --print sysroot)/lib/libstd* lib1/
 else
-	_CP_COMMAND_LIB := cp target/debug/liblib1.so lib1/lib1.abi3.so
-	_CP_COMMAND_DEP := cp target/debug/liblib1_py.so lib1/liblib1_py.so
+	_CP_COMMAND_LIB := cp target/debug/liblib1_py_binding.so lib1/lib1_py_binding.abi3.so
+	_CP_COMMAND_DEP := cp target/debug/*.so lib1/
+	_CP_COMMAND_STD := cp $(shell rustc --print sysroot)/lib/libstd* lib1/
 endif
 
 .PHONY: develop-py develop-rust develop
@@ -33,15 +35,13 @@ build-py:
 build-rust:
 	make -C rust build
 
-build-rust-cbindgen:
-	cbindgen --config cbindgen.toml --output lib1/include/lib1.h .
-
 build-sdist:  ## Build the python sdist
 	python -m build --sdist -o wheelhouse
 
 dev: build  ## Lightweight in-place build for iterative dev
-	$(_CP_COMMAND_DEP)
 	$(_CP_COMMAND_LIB)
+	$(_CP_COMMAND_DEP)
+	$(_CP_COMMAND_STD)
 
 build: build-rust build-py  ## Build the project
 

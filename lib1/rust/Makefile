@@ -10,7 +10,6 @@ dev:  ## Install required dev dependencies
 
 build:  ## Build release
 	cargo build --release --all-features \
-		-p pyo3_dylib \
 		-p lib1 \
 		-p lib1_py
 

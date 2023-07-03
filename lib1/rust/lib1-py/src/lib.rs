@@ -3,9 +3,9 @@
 // reexport
 pub use pyo3;
 
-use pyo3::class::basic::CompareOp;
-use pyo3::prelude::*;
-use pyo3::types::PyType;
+pub use pyo3::class::basic::CompareOp;
+pub use pyo3::prelude::*;
+pub use pyo3::types::PyType;
 use std::str::FromStr;
 use strum::IntoEnumIterator;
 
@@ -33,7 +33,8 @@ impl MyThing {
         Ok(format!("MyThing<{}>", self.thing))
     }
 
-    fn __richcmp__(&self, other: &Self, op: CompareOp) -> PyResult<bool> {
+    fn __richcmp__(&self, other_py: &PyAny, op: CompareOp) -> PyResult<bool> {
+        let other: &Self = unsafe { std::mem::transmute::<&PyAny, &Self>(other_py) };
         match op {
             CompareOp::Lt => Ok(self.thing.to_string() < other.thing.to_string()),
             CompareOp::Le => Ok(self.thing.to_string() <= other.thing.to_string()),

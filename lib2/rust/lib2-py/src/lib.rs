@@ -1,6 +1,10 @@
 #![allow(non_snake_case)]
 
-use lib1_py::pyo3::prelude::*;
+extern crate lib1;
+extern crate lib1_py;
+
+// pub use lib1_py::pyo3::prelude::*;
+use pyo3::prelude::*;
 // use pyo3::class::basic::CompareOp;
 // use pyo3::types::PyType;
 
@@ -10,21 +14,19 @@ use lib2::MyOtherThing as BaseMyOtherThing;
 
 use std::str::FromStr;
 
+// #[pyo3(crate = "lib1_py::pyo3")]
 #[pyclass]
-#[pyo3(crate = "lib1_py::pyo3")]
 pub struct MyOtherThing {
     thing: BaseMyOtherThing,
 }
 
+// #[pyo3(crate = "lib1_py::pyo3")]
 #[pymethods]
-#[pyo3(crate = "lib1_py::pyo3")]
 impl MyOtherThing {
     #[new]
     fn py_new(value: String) -> PyResult<Self> {
         Ok(MyOtherThing {
-            thing: BaseMyOtherThing::new(
-                MyThing::from_str(value.as_str()).unwrap()
-            )
+            thing: BaseMyOtherThing::new(MyThing::from_str(value.as_str()).unwrap()),
         })
     }
 
@@ -38,6 +40,8 @@ impl MyOtherThing {
 
     #[getter]
     fn thing(&self) -> PyResult<MyThingPy> {
-        Ok(MyThingPy { thing: MyThing::ONE })
+        Ok(MyThingPy {
+            thing: MyThing::ONE,
+        })
     }
 }

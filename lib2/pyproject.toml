@@ -57,6 +57,9 @@ skip-string-normalization = true
 [tool.check-manifest]
 ignore = []
 
+[tool.maturin]
+module-name = "lib2"
+
 [tool.ruff]
 line-length = 150
 

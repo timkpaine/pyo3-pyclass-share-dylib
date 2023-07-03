@@ -1,6 +1,5 @@
 [workspace]
 members = [
-  "pyo3-dylib",
   "lib1",
   "lib1-py",
 ]

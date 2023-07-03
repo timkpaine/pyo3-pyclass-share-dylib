@@ -1,23 +1,23 @@
 [package]
-name = "lib1_py_binding"
+name = "lib1-py-binding"
 version = "0.1.0"
 edition = "2021"
 publish = false
 
 [lib]
-name = "lib1"
+name = "lib1_py_binding"
 path = "src/lib.rs"
-crate-type = ["cdylib"]
+crate-type = ["dylib"]
 
 [dependencies]
 lib1 = { path = "./rust/lib1", version = "*" }
 lib1_py = { path = "./rust/lib1-py", version = "*" }
-pyo3 = { version = "0.19", features = ["abi3-py37", "multiple-pymethods"] }
+pyo3 = { path = "../pyo3", version = "*", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
 
 [profile.release]
 debug = true
 lto = false
-panic = 'abort'
+panic = 'unwind'
 rpath = true
 
 [profile.dev]

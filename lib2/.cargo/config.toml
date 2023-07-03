@@ -1,5 +1,6 @@
 [target.x86_64-apple-darwin]
 rustflags = [
+  "-C", "prefer-dynamic",
   "-C", "link-arg=-undefined",
   "-C", "link-arg=dynamic_lookup",
   "-C", "link-args=-Wl,-rpath,@loader_path,-rpath,@loader_path/../lib1",

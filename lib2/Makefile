@@ -9,11 +9,13 @@ print-%:
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
-	_CP_COMMAND_LIB := cp target/debug/liblib2.dylib lib2/lib2.abi3.so
-	_CP_COMMAND_DEP := cp target/debug/lib*_py.dylib lib2/
+	_CP_COMMAND_LIB := cp target/debug/liblib2_py_binding.dylib lib2/lib2_py_binding.abi3.so
+	_CP_COMMAND_DEP := cp target/debug/*.dylib lib2/
+	_CP_COMMAND_STD := cp $(shell rustc --print sysroot)/lib/libstd* lib2/
 else
-	_CP_COMMAND_LIB := cp target/debug/liblib2.so lib2/lib2.abi3.so
-	_CP_COMMAND_DEP := cp target/debug/lib*_py.so lib2/
+	_CP_COMMAND_LIB := cp target/debug/liblib2_py_binding.so lib2/lib2_py_binding.abi3.so
+	_CP_COMMAND_DEP := cp target/debug/*.so lib2/
+	_CP_COMMAND_STD := cp $(shell rustc --print sysroot)/lib/libstd* lib2/
 endif
 
 .PHONY: develop-py develop-rust develop
@@ -37,8 +39,9 @@ build-sdist:  ## Build the python sdist
 	python -m build --sdist -o wheelhouse
 
 dev: build  ## Lightweight in-place build for iterative dev
-	$(_CP_COMMAND_DEP)
 	$(_CP_COMMAND_LIB)
+	$(_CP_COMMAND_DEP)
+	$(_CP_COMMAND_STD)
 
 build: build-rust build-py  ## Build the project
 

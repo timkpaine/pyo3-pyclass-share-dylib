@@ -12,4 +12,3 @@ pub enum MyThing {
     TWO,
     THREE,
 }
-

@@ -11,7 +11,7 @@ description = ""
 [lib]
 name = "lib2"
 path = "src/lib.rs"
-crate-type = ["lib"]
+crate-type = ["dylib"]
 
 [dependencies]
 chrono.workspace = true
