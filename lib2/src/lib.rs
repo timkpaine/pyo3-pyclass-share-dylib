@@ -1,7 +1,11 @@
 // pub use lib1_py::pyo3::prelude::*;
 pub use pyo3::prelude::*;
 pub use lib2_py::MyOtherThing;
-pub use lib1_py::MyThing;
+pub use lib2_py::lib1;
+pub use lib2_py::lib1_py;
+
+pub use lib2;
+pub use lib2_py;
 
 // #[pyo3(crate = "lib1_py::pyo3")]
 #[pymodule]

@@ -1,7 +1,7 @@
-use lib1_py::MyThing;
-use lib1_py;
+pub use lib1_py::MyThing;
+pub use lib1_py;
 // use lib1_py::pyo3::prelude::*;
-use pyo3::prelude::*;
+pub use pyo3::prelude::*;
 
 // #[pyo3(crate = "lib1_py::pyo3")]
 #[pymodule]

@@ -2,6 +2,7 @@
 
 // reexport
 pub use pyo3;
+pub use lib1;
 
 pub use pyo3::class::basic::CompareOp;
 pub use pyo3::prelude::*;

@@ -1,12 +1,12 @@
 #![allow(non_snake_case)]
 
-extern crate lib1;
-extern crate lib1_py;
-
 // pub use lib1_py::pyo3::prelude::*;
 use pyo3::prelude::*;
 // use pyo3::class::basic::CompareOp;
 // use pyo3::types::PyType;
+
+pub use lib1;
+pub use lib1_py;
 
 use lib1::MyThing;
 use lib1_py::MyThing as MyThingPy;
