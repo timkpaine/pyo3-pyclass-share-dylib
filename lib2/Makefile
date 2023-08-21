@@ -10,11 +10,11 @@ print-%:
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 	_CP_COMMAND_LIB := cp target/debug/liblib2_py_binding.dylib lib2/lib2_py_binding.abi3.so
-	_CP_COMMAND_DEP := cp target/debug/*.dylib lib2/
+	_CP_COMMAND_DEP := cp target/debug/liblib2*.dylib lib2/
 	_CP_COMMAND_STD := cp $(shell rustc --print sysroot)/lib/libstd* lib2/
 else
 	_CP_COMMAND_LIB := cp target/debug/liblib2_py_binding.so lib2/lib2_py_binding.abi3.so
-	_CP_COMMAND_DEP := cp target/debug/*.so lib2/
+	_CP_COMMAND_DEP := cp target/debug/liblib2*.so lib2/
 	_CP_COMMAND_STD := cp $(shell rustc --print sysroot)/lib/libstd* lib2/
 endif
 

@@ -10,12 +10,10 @@ path = "src/lib.rs"
 crate-type = ["dylib"]
 
 [dependencies]
-pyo3 = { path = "../../../pyo3", version = "*", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+pyo3 = { version = "0.19.2", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
 lib2 = { version = "*", path = "../lib2" }
 lib1.workspace = true
 lib1_py.workspace = true
-strum.workspace = true
-strum_macros.workspace = true
 
 [profile.release]
 debug = true

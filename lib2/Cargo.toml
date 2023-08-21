@@ -14,7 +14,7 @@ lib2 = { path = "./rust/lib2", version = "*" }
 lib2_py = { path = "./rust/lib2-py", version = "*" }
 lib1 = { path = "../lib1/rust/lib1", version = "*" }
 lib1_py = { path = "../lib1/rust/lib1-py", version = "*" }
-pyo3 = { path = "../pyo3", version = "*", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+pyo3 = { version = "0.19.2", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
 
 [profile.release]
 debug = true

@@ -12,7 +12,7 @@ crate-type = ["dylib"]
 [dependencies]
 lib1 = { path = "./rust/lib1", version = "*" }
 lib1_py = { path = "./rust/lib1-py", version = "*" }
-pyo3 = { path = "../pyo3", version = "*", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+pyo3 = { version = "0.19.2", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
 
 [profile.release]
 debug = true
