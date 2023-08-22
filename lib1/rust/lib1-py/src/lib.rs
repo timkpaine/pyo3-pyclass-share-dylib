@@ -1,3 +1,4 @@
+#![crate_type = "cdylib"]
 #![allow(non_snake_case)]
 
 use pyo3::class::basic::CompareOp;

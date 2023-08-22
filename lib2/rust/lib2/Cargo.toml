@@ -11,7 +11,7 @@ description = ""
 [lib]
 name = "lib2"
 path = "src/lib.rs"
-crate-type = ["dylib"]
+crate-type = ["lib"]
 
 [dependencies]
 lib1.workspace = true

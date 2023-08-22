@@ -7,7 +7,7 @@ publish = false
 [lib]
 name = "lib1_py_binding"
 path = "src/lib.rs"
-crate-type = ["dylib"]
+crate-type = ["cdylib"]
 
 [dependencies]
 lib1 = { path = "./rust/lib1", version = "*" }

@@ -1,14 +1,7 @@
 use std::cmp::Ordering;
 use std::fmt;
+use lib1::MyThing;
 
-struct MyThing;
-
-#[link(name = "lib1")]
-extern {
-    impl MyThing {
-        fn new(value: u32) -> MyThing;
-    }
-}
 
 #[repr(C)]
 #[derive(
@@ -26,18 +19,21 @@ impl MyOtherThing {
 }
 
 impl fmt::Display for MyOtherThing {
+    #[no_mangle]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "MyThing({})", self.thing)
+        write!(f, "MyThing({})", self.thing.value())
     }
 }
 
 impl PartialOrd for MyOtherThing {
+    #[no_mangle]
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         Some(self.cmp(other))
     }
 }
 
 impl Ord for MyOtherThing {
+    #[no_mangle]
     fn cmp(&self, other: &Self) -> Ordering {
         self.thing.cmp(&other.thing)
     }

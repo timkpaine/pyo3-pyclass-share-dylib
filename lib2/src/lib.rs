@@ -7,6 +7,7 @@ pub use lib2_py::lib1_py;
 pub use lib2;
 pub use lib2_py;
 
+#[no_mangle]
 #[pymodule]
 pub fn lib2_py_binding(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<MyOtherThing>()?;

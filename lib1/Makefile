@@ -40,8 +40,8 @@ build-sdist:  ## Build the python sdist
 
 dev: build  ## Lightweight in-place build for iterative dev
 	$(_CP_COMMAND_LIB)
-	$(_CP_COMMAND_DEP)
-	$(_CP_COMMAND_STD)
+	# $(_CP_COMMAND_DEP)
+	# $(_CP_COMMAND_STD)
 
 build: build-rust build-py  ## Build the project
 
