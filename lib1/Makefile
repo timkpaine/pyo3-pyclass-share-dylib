@@ -28,7 +28,7 @@ develop: develop-rust develop-py  ## Setup project for development
 
 .PHONY: build-py build-rust build
 build-py:
-	maturin build
+	maturin build --skip-auditwheel
 
 build-rust:
 	make -C rust build
