@@ -1,0 +1,21 @@
+[workspace]
+members = [
+    "lib1-rs",
+    "lib1-py",
+    "lib2-rs",
+    "lib2-py",
+    "util",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+
+[workspace.dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+num = "0.4"
+pyo3 = { git = "https://github.com/timkpaine/pyo3.git", branch = "tkp/share", features = ["multiple-pymethods", "extension-module"]}
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+strum = "0.24.1"
+strum_macros = "0.24.3"

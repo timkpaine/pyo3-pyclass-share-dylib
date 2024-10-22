@@ -1,0 +1,26 @@
+[package]
+name = "lib1_py"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["lib"]
+
+[dependencies]
+lib1 = { path = "../lib1-rs", version = "*" }
+util = { path = "../util", version = "*" }
+pyo3.workspace = true
+strum.workspace = true
+
+[profile.release]
+debug = true
+lto = false
+panic = 'abort'
+rpath = true
+
+[profile.dev]
+debug = true
+lto = false
+rpath = true
